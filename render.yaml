@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: job-scraper-app
+    env: python
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+    buildFilter:
+      paths:
+        - requirements.txt
+        - app.py
+        - jobScraperv2.py
+        - templates/**
+        - static/**
